@@ -1,0 +1,7 @@
+<h1>Checkout</h1>
+<p>Total: {{ total }}</p>
+<form method="post">
+    {% csrf_token %}
+    <!-- Mpesa payment details here -->
+    <button type="submit">Pay via Mpesa</button>
+</form>

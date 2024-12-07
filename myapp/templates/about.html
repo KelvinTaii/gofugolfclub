@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <br><br>
+	<!-- About Section -->
+<section id="about" class="about section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>About</h2>
+    <p>Who We Are</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+        <p>
+          At Gofu Golf Club, we are passionate about creating a welcoming and inclusive environment where golf enthusiasts of all levels can enjoy the game. Our mission is to provide world-class facilities and an unmatched golfing experience.
+        </p>
+        <ul>
+          <li><i class="bi bi-check2-circle"></i> <span>Our championship-level course is designed to challenge and inspire players.</span></li>
+          <li><i class="bi bi-check2-circle"></i> <span>State-of-the-art facilities, including a pro shop and practice range.</span></li>
+          <li><i class="bi bi-check2-circle"></i> <span>Experienced professionals available for coaching and mentorship.</span></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <p>
+          Gofu Golf Club is more than just a golf course; it’s a community. From hosting tournaments to social events, we aim to bring people together through their shared love for golf. Whether you're here to improve your game, relax, or connect with others, our club offers an experience like no other.
+        </p>
+        <a href="#membership" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section><!-- /About Section -->
+<!-- Features Section -->
+<section id="features" class="features section">
+
+  <div class="container">
+
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
+      <li class="nav-item col-3">
+        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+          <i class="bi bi-binoculars"></i>
+          <h4 class="d-none d-lg-block">World-Class Golf Course</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+          <i class="bi bi-box-seam"></i>
+          <h4 class="d-none d-lg-block">Exclusive Club Amenities</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+          <i class="bi bi-brightness-high"></i>
+          <h4 class="d-none d-lg-block">Golf Training Programs</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
+          <i class="bi bi-command"></i>
+          <h4 class="d-none d-lg-block">Events & Tournaments</h4>
+        </a>
+      </li>
+    </ul><!-- End Tab Navigation -->
+
+    <!-- Tab Content -->
+    <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+      <!-- Tab 1: Golf Course -->
+      <div class="tab-pane fade active show" id="features-tab-1">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Experience Our Championship-Level Golf Course</h3>
+            <p class="fst-italic">
+              Designed by renowned architects, our course offers stunning views, challenging layouts, and pristine fairways for golfers of all skill levels.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>18-hole course with well-maintained greens and bunkers.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Picturesque scenery that enhances your golfing experience.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Custom tee boxes for beginners, intermediates, and professionals.</span></li>
+            </ul>
+            <p>
+              Whether you're here to improve your game or simply enjoy a relaxing day on the course, we promise an unforgettable golfing experience.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="{% static 'assets/img/golf.jpg' %}" alt="Golf Course" class="img-fluid">
+          </div>
+        </div>
+      </div><!-- End Tab 1 -->
+
+      <!-- Tab 2: Club Amenities -->
+      <div class="tab-pane fade" id="features-tab-2">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Unwind with Our Premium Club Amenities</h3>
+            <p>
+              Gofu Golf Club offers more than just a game – it’s a lifestyle. Enjoy our exclusive amenities designed to make your visit memorable.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Modern clubhouse with dining, lounges, and event spaces.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Pro shop stocked with the latest golf gear and apparel.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Practice range, putting greens, and locker facilities.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Relaxing spa and wellness center for post-game rejuvenation.</span></li>
+            </ul>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="{% static 'assets/img/golf.jpg' %}" alt="Clubhouse" class="img-fluid">
+          </div>
+        </div>
+      </div><!-- End Tab 2 -->
+
+      <!-- Tab 3: Golf Training -->
+      <div class="tab-pane fade" id="features-tab-3">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Enhance Your Skills with Professional Training</h3>
+            <p>
+              Our golf academy is designed to help players improve their game with guidance from experienced professionals.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>One-on-one coaching sessions with certified instructors.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Beginner clinics and junior programs to introduce new players to the sport.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Advanced training techniques, including swing analysis and course strategy.</span></li>
+            </ul>
+            <p class="fst-italic">
+              From beginners to seasoned players, our training programs cater to all skill levels, ensuring continuous improvement.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="{% static 'assets/img/golf.jpg' %}" alt="Golf Training" class="img-fluid">
+          </div>
+        </div>
+      </div><!-- End Tab 3 -->
+
+      <!-- Tab 4: Events & Tournaments -->
+      <div class="tab-pane fade" id="features-tab-4">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Host and Participate in Memorable Events</h3>
+            <p>
+              At Gofu Golf Club, we bring the community together with exciting events and tournaments throughout the year.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Weekly tournaments for all levels of players.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Corporate outings and charity events tailored to your needs.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Special holiday tournaments and themed events for families.</span></li>
+            </ul>
+            <p class="fst-italic">
+              Be a part of the vibrant community and make lasting memories, both on and off the course.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="{% static 'assets/img/golf.jpg' %}" alt="Golf Tournament" class="img-fluid">
+          </div>
+        </div>
+      </div><!-- End Tab 4 -->
+
+    </div><!-- End Tab Content -->
+
+  </div>
+
+</section><!-- /Features Section -->
+
+{% endblock %}

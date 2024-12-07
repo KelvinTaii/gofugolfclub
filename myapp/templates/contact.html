@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Contact Section -->
+<section id="contact" class="contact section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Get in Touch with Us</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade" data-aos-delay="100">
+
+    <div class="row gy-4">
+
+      <!-- Contact Information -->
+      <div class="col-lg-4">
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-geo-alt flex-shrink-0"></i>
+          <div>
+            <h3>Address</h3>
+            <p>Kencom House, Moi Avenue, Nairobi, Kenya</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-telephone flex-shrink-0"></i>
+          <div>
+            <h3>Call Us</h3>
+            <p>+254 712 345 678<br>+254 798 123 456</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-envelope flex-shrink-0"></i>
+          <div>
+            <h3>Email Us</h3>
+            <p>info@yourcompany.co.ke</p>
+          </div>
+        </div><!-- End Info Item -->
+
+      </div><!-- End Contact Information -->
+
+<!-- Contact Form -->
+      <div class="col-lg-8">
+        <form method="post" action="{% url 'contact' %}" class="contact-form" data-aos="fade-up" data-aos-delay="200">
+          {% csrf_token %}
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="col-md-6">
+              <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+            </div>
+
+            <div class="col-md-12">
+              <textarea name="message" class="form-control" rows="6" placeholder="Message" required></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              {% if success_message %}
+              <div class="sent-message">{{ success_message }}</div>
+              {% endif %}
+              <button type="submit">Send Message</button>
+            </div>
+
+          </div>
+        </form>
+      </div><!-- End Contact Form -->
+
+
+    </div>
+
+    <!-- Map Section -->
+    <div class="row gy-4 mt-5">
+      <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+        <div class="mapouter">
+          <div class="gmap_canvas">
+            <iframe width="100%" height="400" id="gmap_canvas"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.080256492604!2d36.814245799999996!3d-1.2832539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d35c8ebfe1%3A0x7bf51b7d38d9e1b8!2sKencom%20House!5e0!3m2!1sen!2ske!4v1699394443004!5m2!1sen!2ske"
+              frameborder="0"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Map Section -->
+
+  </div>
+
+</section><!-- /Contact Section -->
+
+
+{% endblock %}

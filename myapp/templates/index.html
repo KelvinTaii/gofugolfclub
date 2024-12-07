@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div id="hero-carousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="carousel-container">
+            <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Gofu Golf Club</span></h2>
+            <p class="animate__animated animate__fadeInUp">
+              Experience a premier golfing destination surrounded by stunning landscapes and exceptional facilities. Whether you're a seasoned player or just starting, Gofu Golf Club is the perfect place to hone your skills and enjoy the game.
+            </p>
+            <a href="{% url 'about' %}" class="btn-get-started animate__animated animate__fadeInUp scrollto">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="carousel-container">
+            <h2 class="animate__animated animate__fadeInDown">World-Class Facilities</h2>
+            <p class="animate__animated animate__fadeInUp">
+              Our state-of-the-art course is designed for golfers of all levels. With meticulously maintained greens, a modern clubhouse, and a professional training academy, we aim to provide an unparalleled golfing experience.
+            </p>
+            <a href="#facilities" class="btn-get-started animate__animated animate__fadeInUp scrollto">Explore Facilities</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="carousel-container">
+            <h2 class="animate__animated animate__fadeInDown">Join Our Golfing Community</h2>
+            <p class="animate__animated animate__fadeInUp">
+              Become a member of our vibrant community of golf enthusiasts. Enjoy exclusive events, tournaments, and social gatherings while building lasting connections with fellow players.
+            </p>
+            <a href="#membership" class="btn-get-started animate__animated animate__fadeInUp scrollto">Join Now</a>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+        <br>
+        <br><br><br><br><br>
+
+      <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+        <defs>
+          <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+        </defs>
+        <g class="wave1">
+          <use xlink:href="#wave-path" x="50" y="3"></use>
+        </g>
+        <g class="wave2">
+          <use xlink:href="#wave-path" x="50" y="0"></use>
+        </g>
+        <g class="wave3">
+          <use xlink:href="#wave-path" x="50" y="9"></use>
+        </g>
+      </svg>
+
+    </section><!-- /Hero Section -->
+    <!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Testimonials</h2>
+    <p>What our members and guests are saying about us</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="swiper init-swiper">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          },
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 1,
+              "spaceBetween": 40
+            },
+            "1200": {
+              "slidesPerView": 3,
+              "spaceBetween": 10
+            }
+          }
+        }
+      </script>
+      <div class="swiper-wrapper">
+
+        <!-- Testimonial 1 -->
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="Saul Goodman">
+            <h3>Saul Goodman</h3>
+            <h4>Club Member</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>The facilities at the club are world-class! The course is impeccably maintained, and the staff are always friendly and helpful. I’ve improved my game significantly since joining.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End Testimonial 1 -->
+
+        <!-- Testimonial 2 -->
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="Sara Wilsson">
+            <h3>Sara Wilsson</h3>
+            <h4>Frequent Guest</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>I love the serene environment here. Whether I’m on the course or relaxing in the clubhouse, it’s always an unforgettable experience.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End Testimonial 2 -->
+
+        <!-- Testimonial 3 -->
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="Jena Karlis">
+            <h3>Jena Karlis</h3>
+            <h4>Golf Enthusiast</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>The shop has everything I need, from equipment to stylish golf apparel. Plus, the course offers a good challenge for golfers of all skill levels.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End Testimonial 3 -->
+
+        <!-- Testimonial 4 -->
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="Matt Brandon">
+            <h3>Matt Brandon</h3>
+            <h4>Event Organizer</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Hosting our charity golf tournament here was the best decision. The team went above and beyond to make it a memorable day for everyone involved.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End Testimonial 4 -->
+
+        <!-- Testimonial 5 -->
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="{% static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="John Larson">
+            <h3>John Larson</h3>
+            <h4>Beginner Golfer</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>The coaching programs offered at the club are excellent. As a beginner, I’ve found the lessons invaluable, and I feel much more confident on the course now.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End Testimonial 5 -->
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+
+</section><!-- /Testimonials Section -->
+
+{% endblock %}
