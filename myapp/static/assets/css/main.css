@@ -2558,3 +2558,84 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+/* Styling for the Logout Button */
+.logout-btn {
+  background-color: #ed6603;  /* Yellow background */
+  border: 2px solid #eb6603;  /* Yellow border */
+  color: white;  /* White text */
+  padding: 8px 16px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;  /* Rounded corners */
+  transition: all 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.logout-btn:hover {
+  background-color: white;  /* White background on hover */
+  color: #eb6603;  /* Yellow text on hover */
+  border: 2px solid #eb6603;  /* Retain yellow border */
+}
+
+/* Styling for the Logout Link */
+nav#navmenu a.logout-link {
+  color: white;  /* White text */
+  text-decoration: none;  /* No underline */
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for logout link */
+nav#navmenu a.logout-link:hover {
+  color: #eb6603;  /* Yellow text on hover */
+  text-decoration: underline;
+}
+
+/* Active link style */
+nav#navmenu a.logout-link.active {
+  color: #eb6603;
+  font-weight: bold;
+}
+
+/* Floating Cart Icon */
+.cart-icon {
+  font-size: 40px; /* Larger size */
+  position: fixed;
+  top: 50%; /* Center vertically */
+  right: 20px; /* Positioned on the right */
+  transform: translateY(-50%); /* Ensure it's vertically centered */
+  background-color: #f58c42; /* Orange background */
+  padding: 15px; /* Padding for the icon */
+  border-radius: 50%;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000; /* Ensure it floats above everything */
+}
+
+/* Cart Item Count Bubble */
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px; /* Center the text vertically */
+}
+
+/* Alert Styling */
+.alert-info {
+  background-color: #0dcaf0;
+  color: white;
+}
+
+/* Ensure no padding issues */
+body {
+  padding-right: 0;
+}

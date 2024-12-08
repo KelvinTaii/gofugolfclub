@@ -1,22 +1,22 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Welcome|Gofu-Golf Club</title>
+  <title>{% block title %}Welcome | Gofu-Golf Club{% endblock %}</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img.png' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Poppins:wght@100;300;400;500;700;900&family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -29,110 +29,59 @@
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Selecao
-  * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    
 </head>
 
 <body class="starter-page-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
-      <a href="{% url 'index' %}" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="#index" class="logo d-flex align-items-center">
         <h1 class="sitename">Gofu-Golf Club</h1>
       </a>
-
-
-<nav id="navmenu" class="navmenu">
-  <ul>
-    <li>
-      <a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">
-        Home
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">
-        About
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'services' %}" class="{% if request.path == '/services/' %}active{% endif %}">
-        Services
-      </a>
-    </li>
-    <li>
-      <a href="#portfolio" class="{% if request.path == '/portfolio/' %}active{% endif %}">
-        Portfolio
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'members_list' %}" class="{% if request.path == '/team/' %}active{% endif %}">
-        Team
-      </a>
-    </li>
-    <li>
-      <a href="{% url 'membership' %}" class="{% if request.path == '/registration/' %}active{% endif %}">
-        Blog
-      </a>
-    </li>
-    <li class="dropdown">
-      <a href="#">
-        <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
-      </a>
+        <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#">Dropdown 1</a></li>
-        <li class="dropdown">
-          <a href="#">
-            <span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i>
-          </a>
-          <ul>
-            <li><a href="#">Deep Dropdown 1</a></li>
-            <li><a href="#">Deep Dropdown 2</a></li>
-            <li><a href="#">Deep Dropdown 3</a></li>
-            <li><a href="#">Deep Dropdown 4</a></li>
-            <li><a href="#">Deep Dropdown 5</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Dropdown 2</a></li>
-        <li><a href="#">Dropdown 3</a></li>
-        <li><a href="#">Dropdown 4</a></li>
+        <li><a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+        <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
+        <li><a href="{% url 'services' %}" class="{% if request.path == '/services/' %}active{% endif %}">Services</a></li>
+        <li><a href="{% url 'members_list' %}" class="{% if request.path == '/team/' %}active{% endif %}">Team</a></li>
+        <li><a href="{% url 'membership' %}" class="{% if request.path == '/registration/' %}active{% endif %}">Blog</a></li>
+        <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
+        <li><a href="{% url 'shop' %}" class="{% if request.path == '/shop/' %}active{% endif %}">Shop</a></li>
+      
+   
+          {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link">Logout</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
       </ul>
-    </li>
-    <li>
-      <a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">
-        Contact
-      </a>
-    </li>
-  </ul>
-  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-</nav>
-
-
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+      
     </div>
   </header>
-  
-           <!-- Display Messages if Any -->
-{% if messages %}
+
+  <!-- Display Messages if Any -->
+  {% if messages %}
     <div class="fixed-bottom container mt-3">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
     </div>
-{% endif %}
+  {% endif %}
 
   {% block content %}
-
-  	
+  <!-- Content will be injected here from child templates -->
   {% endblock %}
 
   <footer id="footer" class="footer dark-background">
@@ -140,21 +89,17 @@
       <h3 class="sitename">Gofu-Golf Club</h3>
       <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
       <div class="social-links d-flex justify-content-center">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-skype"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="bi bi-twitter-x"></a>
+        <a href="#" class="bi bi-facebook"></a>
+        <a href="#" class="bi bi-instagram"></a>
+        <a href="#" class="bi bi-skype"></a>
+        <a href="#" class="bi bi-linkedin"></a>
       </div>
       <div class="container">
         <div class="copyright">
           <span>Copyright</span> <strong class="px-1 sitename">Gofu-Golf Club</strong> <span>All Rights Reserved</span>
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you've purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
           Designed by <a href="#">Kelvin Nyakundi</a>
         </div>
       </div>
@@ -178,19 +123,19 @@
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
   <script>
-        // Auto-dismiss alerts after 3 seconds
-        window.onload = function () {
-            const messages = document.querySelectorAll(".alert-dismissible");
-            messages.forEach((message) => {
-                setTimeout(() => {
-                    message.classList.remove("show");
-                    message.classList.add("fade");
-                }, 3000);
-            });
-        };
-    </script>
+    // Auto-dismiss alerts after 3 seconds
+    window.onload = function () {
+      const messages = document.querySelectorAll(".alert-dismissible");
+      messages.forEach((message) => {
+        setTimeout(() => {
+          message.classList.remove("show");
+          message.classList.add("fade");
+        }, 3000);
+      });
+    };
+  </script>
 
 </body>
-
 </html>
