@@ -150,7 +150,13 @@ def cart(request):
 
 
 # Add to Cart
+@login_required  # Ensure only logged-in users can access this view
 def add_to_cart(request, product_id):
+    # Check if the user is staff or authenticated
+    if not request.user.is_authenticated or not (request.user.is_staff or request.user.is_authenticated):
+        messages.error(request, "You need to be logged in to add items to the cart.")
+        return redirect('login')
+
     product = get_object_or_404(Product, id=product_id)
     cart = get_cart(request)
 
@@ -171,7 +177,6 @@ def add_to_cart(request, product_id):
 
     messages.success(request, f"{product.name} added to your cart!")
     return redirect('shop')
-
 
 # Checkout Page
 @login_required
