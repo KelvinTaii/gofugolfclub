@@ -35,11 +35,11 @@
 <body class="starter-page-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-      <a href="#index" class="logo d-flex align-items-center">
-        <h1 class="sitename">Gofu-Golf Club</h1>
-      </a>
-        <nav id="navmenu" class="navmenu">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <a href="#index" class="logo d-flex align-items-center">
+      <h1 class="sitename">Gofu-Golf Club</h1>
+    </a>
+    <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="{% url 'index' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
         <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
@@ -48,25 +48,24 @@
         <li><a href="{% url 'membership' %}" class="{% if request.path == '/registration/' %}active{% endif %}">Blog</a></li>
         <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
         <li><a href="{% url 'shop' %}" class="{% if request.path == '/shop/' %}active{% endif %}">Shop</a></li>
-      
-   
-          {% if user.is_authenticated %}
-          <li>
-            <form action="{% url 'logout' %}" method="POST" style="display: inline;">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-link">Logout</button>
-            </form>
-          </li>
+
+        {% if user.is_authenticated %}
+        <li>
+          <form action="{% url 'logout' %}" method="POST" style="margin: 0;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link nav-link" style="padding: 0;">Logout</button>
+          </form>
+        </li>
         {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'register' %}">Register</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
         {% endif %}
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
-      
-    </div>
-  </header>
+  </div>
+</header>
+
 
   <!-- Display Messages if Any -->
   {% if messages %}
