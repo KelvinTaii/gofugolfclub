@@ -10,12 +10,10 @@ from django.contrib.auth.models import User
 # Helper function to get or create a cart
 def get_cart(request):
     if request.user.is_authenticated:
-        # For authenticated users, ensure only one cart exists
-        cart = Cart.objects.filter(user=request.user).first()  # Get the first cart
+        cart = Cart.objects.filter(user=request.user).first()  # Get the first cart for authenticated users
         if not cart:
             cart = Cart.objects.create(user=request.user)  # Create a new cart if none exists
     else:
-        # For guests, use session_key to get or create a cart
         session_key = request.session.session_key
         if not session_key:
             request.session.create()  # Create session if it doesn't exist
@@ -27,7 +25,7 @@ def get_cart(request):
 
 # Home Page
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'page_title': 'Welcome to Gofu-Golf Club'})
 
 
 # User Registration
@@ -37,10 +35,18 @@ def register(request):
         password = request.POST['password']
         email = request.POST['email']
 
+        # Validate user input
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already exists. Please choose another.')
+            return redirect('register')
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists. Please use another.')
+            return redirect('register')
+
         user = User.objects.create_user(username=username, password=password, email=email)
         messages.success(request, 'Registration successful! You can now log in.')
         return redirect('login')
-    return render(request, 'register.html')
+    return render(request, 'register.html', {'page_title': 'Gofu-Golf | Sign Up'})
 
 
 # User Login
@@ -56,7 +62,7 @@ def login(request):
             return redirect('index')
         else:
             messages.error(request, 'Invalid credentials, please try again.')
-    return render(request, 'login.html')
+    return render(request, 'login.html', {'page_title': 'Gofu-Golf | Sign In'})
 
 
 # User Logout
@@ -68,12 +74,12 @@ def logout(request):
 
 # About Page
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about.html', {'page_title': 'Gofu-Golf | About Us'})
 
 
 # Services Page
 def services(request):
-    return render(request, 'services.html')
+    return render(request, 'services.html', {'page_title': 'Gofu-Golf | Our Services'})
 
 
 # Contact Page
@@ -89,7 +95,7 @@ def contact(request):
     else:
         form = ContactForm()
 
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'contact.html', {'page_title': 'Gofu-Golf | Contact Us', 'form': form})
 
 
 # Membership Page
@@ -98,16 +104,25 @@ def membership(request):
         form = MemberForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Membership registration successful!')
             return redirect('members_list')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = MemberForm()
-    return render(request, 'membership.html', {'form': form})
+    return render(request, 'membership.html', {
+        'form': form,
+        'page_title': 'Gofu-Golf | Membership Registration'
+    })
 
 
 # Members List
 def members_list(request):
     members = Member.objects.all()
-    return render(request, 'members_list.html', {'members': members})
+    return render(request, 'members_list.html', {
+        'members': members,
+        'page_title': 'Gofu-Golf | Members List'
+    })
 
 
 # Shop Page
@@ -115,7 +130,11 @@ def shop(request):
     products = Product.objects.all()
     cart = get_cart(request)
     cart_item_count = cart.items.count()  # Get count of items in the cart
-    return render(request, 'shop.html', {'products': products, 'cart_item_count': cart_item_count})
+    return render(request, 'shop.html', {
+        'products': products,
+        'cart_item_count': cart_item_count,
+        'page_title': 'Gofu-Golf | Shop With Us',
+    })
 
 
 # Cart Page
@@ -123,7 +142,11 @@ def cart(request):
     cart = get_cart(request)
     cart_items = cart.items.all()
     total_price = cart.total_price()  # Reuse total_price method from the Cart model
-    return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price})
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'page_title': 'Gofu-Golf | Your Cart',
+    })
 
 
 # Add to Cart
@@ -153,31 +176,22 @@ def add_to_cart(request, product_id):
 # Checkout Page
 @login_required
 def checkout(request):
-    cart = get_cart(request)  # Function to retrieve the user's cart
+    cart = get_cart(request)
     cart_items = cart.items.all()
 
     if request.method == "POST":
-        # Handle quantity update and delete actions
         for item in cart_items:
-            # Increase Quantity
-            if f"increase_{item.id}" in request.POST:
-                if item.product.stock > item.quantity:  # Ensure stock is sufficient
-                    item.quantity += 1
-                    item.save()
-
-            # Decrease Quantity
-            elif f"decrease_{item.id}" in request.POST:
-                if item.quantity > 1:  # Ensure quantity doesn't go below 1
-                    item.quantity -= 1
-                    item.save()
-
-            # Delete Item
+            if f"increase_{item.id}" in request.POST and item.product.stock > item.quantity:
+                item.quantity += 1
+                item.save()
+            elif f"decrease_{item.id}" in request.POST and item.quantity > 1:
+                item.quantity -= 1
+                item.save()
             elif f"delete_{item.id}" in request.POST:
                 item.delete()
                 messages.success(request, f"Removed {item.product.name} from your cart.")
                 return redirect('checkout')
 
-        # Handle checkout confirmation
         if "confirm_checkout" in request.POST:
             for item in cart_items:
                 product = item.product
@@ -187,26 +201,25 @@ def checkout(request):
                 else:
                     messages.error(request, f"Insufficient stock for {product.name}.")
                     return redirect('checkout')
-
-            # Clear the cart after checkout
             cart_items.delete()
             messages.success(request, "Checkout successful! Thank you for your purchase.")
             return redirect('shop')
 
-        # Handle cart update button
-        messages.success(request, "Cart updated successfully!")
-        return redirect('checkout')
-
     total_price = sum(item.total_price() for item in cart_items)
-    return render(request, 'checkout.html', {'cart_items': cart_items, 'total_price': total_price})
+    return render(request, 'checkout.html', {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'page_title': 'Shop | Checkout',
+    })
+
 
 # Add Product (Admin Functionality)
 @login_required
 def add_product(request):
     if not request.user.is_staff:
-        # If the user is not an admin, redirect them or show an error message
         messages.error(request, "You do not have permission to add products.")
-        return redirect('/')  # Redirect to a home or other page
+        return redirect('index')
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -216,4 +229,7 @@ def add_product(request):
     else:
         form = ProductForm()
 
-    return render(request, 'add-product.html', {'form': form})
+    return render(request, 'add-product.html', {
+        'form': form,
+        'page_title': 'Gofu-Golf | Add Product',
+    })

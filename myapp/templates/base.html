@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>{% block title %}Welcome | Gofu-Golf Club{% endblock %}</title>
+  <title>{{ page_title|default:"Gofu-Golf Club" }}</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -45,7 +45,7 @@
         <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
         <li><a href="{% url 'services' %}" class="{% if request.path == '/services/' %}active{% endif %}">Services</a></li>
         <li><a href="{% url 'members_list' %}" class="{% if request.path == '/team/' %}active{% endif %}">Team</a></li>
-        <li><a href="{% url 'membership' %}" class="{% if request.path == '/registration/' %}active{% endif %}">Blog</a></li>
+        <li><a href="{% url 'membership' %}" class="{% if request.path == '/registration/' %}active{% endif %}">Membership</a></li>
         <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
         <li><a href="{% url 'shop' %}" class="{% if request.path == '/shop/' %}active{% endif %}">Shop</a></li>
 
