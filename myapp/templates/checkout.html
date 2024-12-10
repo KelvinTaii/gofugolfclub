@@ -101,7 +101,7 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <!-- Product Info -->
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" 
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }} image" 
                                             class="img-fluid rounded me-3">
                                         <div>
                                             <h5 class="mb-1">{{ item.product.name }}</h5>
@@ -112,13 +112,20 @@
                                     <!-- Quantity and Subtotal -->
                                     <div class="text-center">
                                         <div class="input-group input-group-sm">
-                                            <button type="submit" name="decrease_{{ item.id }}" value="1" 
-                                                class="btn btn-outline-secondary btn-sm">-</button>
+                                            <button type="submit" name="decrease_{{ item.id }}"
+                                             class="btn btn-outline-secondary btn-sm"
+                                              {% if item.quantity <= 1 %}disabled{% endif %}>    
+                                            -
+                                            </button>
                                             <input type="number" name="quantity_{{ item.id }}" 
                                                 value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}" 
                                                 class="form-control form-control-sm text-center" style="width: 60px;" readonly>
-                                            <button type="submit" name="increase_{{ item.id }}" value="1" 
-                                                class="btn btn-outline-secondary btn-sm">+</button>
+                                            <button type="submit" name="increase_{{ item.id }}" 
+                                                    class="btn btn-outline-secondary btn-sm" 
+                                                    {% if item.quantity >= item.product.stock %}disabled{% endif %}>
+                                                 +
+                                            </button>
+
                                         </div>
                                         <p class="mt-2 font-weight-bold mb-0">Subtotal: Ksh {{ item.total_price }}</p>
                                     </div>

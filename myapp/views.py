@@ -186,17 +186,28 @@ def checkout(request):
 
     if request.method == "POST":
         for item in cart_items:
-            if f"increase_{item.id}" in request.POST and item.product.stock > item.quantity:
-                item.quantity += 1
-                item.save()
-            elif f"decrease_{item.id}" in request.POST and item.quantity > 1:
-                item.quantity -= 1
-                item.save()
+            # Handle Increase Quantity
+            if f"increase_{item.id}" in request.POST:
+                if item.product.stock > item.quantity:
+                    item.quantity += 1
+                    item.save()
+                else:
+                    messages.error(request, f"Insufficient stock for {item.product.name}.")
+                    return redirect('cart')
+
+            # Handle Decrease Quantity
+            elif f"decrease_{item.id}" in request.POST:
+                if item.quantity > 1:
+                    item.quantity -= 1
+                    item.save()
+
+            # Handle Delete Item
             elif f"delete_{item.id}" in request.POST:
                 item.delete()
                 messages.success(request, f"Removed {item.product.name} from your cart.")
-                return redirect('checkout')
+                return redirect('cart')
 
+        # Handle Checkout Confirmation
         if "confirm_checkout" in request.POST:
             for item in cart_items:
                 product = item.product
@@ -204,8 +215,10 @@ def checkout(request):
                     product.stock -= item.quantity
                     product.save()
                 else:
-                    messages.error(request, f"Insufficient stock for {product.name}.")
-                    return redirect('checkout')
+                    messages.error(request, f"Insufficient stock for {product.name}. Please update your cart.")
+                    return redirect('cart')
+
+            # Clear the cart after checkout
             cart_items.delete()
             messages.success(request, "Checkout successful! Thank you for your purchase.")
             return redirect('shop')
